@@ -137,14 +137,7 @@ const Home = () => {
               )
             )}
           </datalist>
-          <button type="submit" className="cursor-pointer group p-0">
-
-            <div className="size-12 bg-primary-50 rounded-full flex items-center justify-center inset-shadow-accent-100 inset-shadow-sm group-hover:bg-accent-50 group-hover:inset-shadow-sm group-hover:inset-shadow-primary-100 group-hover:scale-95 transition-properties">
-              <IoSearch className="size-8 fill-primary-200 group-hover:fill-primary-50 transition-properties"/>
-            </div>
-            
-          </button>
-
+          
         </form>
       </div>
 
