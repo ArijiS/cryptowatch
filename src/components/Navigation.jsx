@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiCopperCoinFill } from "react-icons/ri";
 import { useCoinContext } from '../context/CoinContext';
+import { Link } from 'react-router-dom';
 
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
@@ -56,7 +57,7 @@ const Navigation = () => {
 
         <div className="absolute h-250 -top-[800%] left-0 right-0 opacity-30 blur-2xl rounded-full bg-accent-50" ></div>
 
-        <a href="#" className="relative flex gap-x-2 items-center"><RiCopperCoinFill className="size-8"/><p className="font-semibold tracking-tight text-xl">cryptoWtch</p></a>
+        <Link to={`/`} href="#" className="relative flex gap-x-2 items-center"><RiCopperCoinFill className="size-8"/><p className="font-semibold tracking-tight text-xl">cryptoWtch</p></Link>
 
         <div className="bg-primary-100 rounded-lg pr-4">
           <select

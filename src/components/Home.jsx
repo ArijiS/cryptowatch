@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { IoSearch } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 import { useCoinContext } from '../context/CoinContext';
 import Loader from './Loader';
 
@@ -25,7 +26,7 @@ const Home = () => {
     }
 
     const filteredCoins = allCoins.filter(
-      (item) => item.name.toLowerCase().startsWith(value) || item.symbol.toLowerCase().startsWith(value)
+      (item) => item.id.toLowerCase().startsWith(value) || item.symbol.toLowerCase().startsWith(value)
     );
 
     if(filteredCoins.length > 0){
@@ -144,7 +145,7 @@ const Home = () => {
 
       <div className="">
         {loading ? <Loader />
-        : (<div className="max-w-4xl mx-auto mt-16">
+        : (<div className="max-w-4xl mx-auto my-16">
 
         <div className="bg-primary-100 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-10 py-5 rounded-tl-2xl rounded-tr-2xl text-lg font-medium tracking-tight">
           <p className="text-left">#</p>
@@ -157,7 +158,7 @@ const Home = () => {
         <ul>
           {displayCoins.slice(0, 10).map(
             (item, i)=>(
-              <li key={i}
+              <Link to={`/coin/${item.id}`} key={i}
               className="group relative mt-4 bg-primary-100/40 hover:bg-primary-100/70 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] items-center px-10 py-4 text-base font-normal last:rounded-br-2xl last:rounded-bl-2xl cursor-pointer">
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-accent-50 to-transparent opacity-15 group-hover:opacity-30"/>
                 <p>{item.market_cap_rank}</p>
@@ -169,7 +170,7 @@ const Home = () => {
                   { item.price_change_percentage_24h !== null ? item.price_change_percentage_24h.toFixed(3) : ""}
                   </p>
                 <p className="text-right">{`${currency.symbol} ${marketCapConversion(item.market_cap)}`}</p>
-              </li>
+              </Link>
             )
           )
           
