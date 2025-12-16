@@ -112,18 +112,18 @@ const Home = () => {
     }
 
   return (
-    <section className="max-w-360 px-25 py-25 mx-auto">
+    <section className="max-w-360 max-sm:p-10 sm:p-12 md:p-16 lg:p-20 xl:p-25 mx-auto">
       
-      <div className="flex flex-col items-center gap-y-12">
+      <div className="flex flex-col items-center max-sm:gap-y-8 sm:gap-y-12">
         
-        <div className="relative flex justify-center gap-x-15 mb-10 bg-primary-100/25 px-8 py-3 rounded-xl font-light text-primary-75 inset-shadow-accent-50/20 inset-shadow-xs">
-          <div className="absolute -top-0.5 h-2 w-20 rounded-full blur-sm bg-accent-50/40 mix-blend-plus-lighter"/>
+        <div className="relative flex justify-center gap-x-15 max-sm:mb-5 sm:mb-10 bg-primary-100/25 px-8 py-3 rounded-xl font-light text-primary-75 inset-shadow-accent-50/20 inset-shadow-xs">
+          <div className="absolute -top-0.5 h-2 w-25 rounded-full blur-sm bg-accent-50/40 mix-blend-plus-lighter"/>
           <p>Buy</p>
           <p>Sell</p>
           <p>Trade</p>
         </div>
 
-        <h1 className="text-6xl text-center font-semibold tracking-tight">Simplify Your Cryptocurrency Journey</h1>
+        <h1 className="text-4xl lg:text-5xl xl:text-6xl/normal text-center font-semibold tracking-tight">Simplify Your Cryptocurrency Journey</h1>
 
         <p className="text-center text-lg/9 font-light max-w-150 text-primary-75">Cryptocurrency can feel overwhelming, but it doesn't have to be.<br/>Track prices, explore coins, with our easy-to-use dashboard.</p>
 

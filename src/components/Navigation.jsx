@@ -51,7 +51,7 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="relative flex justify-between items-center max-w-360 py-10 px-25 m-auto">
+    <nav className="relative flex max-sm:flex-col max-sm:gap-y-10 max-sm:items-center flex-row justify-between items-center max-w-360 py-10 px-10 sm:px-12 md:px-16 lg:px-20 xl:px-25 m-auto">
 
         <div className="absolute h-50 -top-[190%] left-0 right-0 opacity-40 blur-xl rounded-full bg-white mix-blend-plus-lighter" ></div>
 
@@ -62,7 +62,7 @@ const Navigation = () => {
         <div className="bg-primary-100 rounded-lg pr-4">
           <select
           id="currencySelect"
-          className="rounded-lg bg-primary-100 text-lg px-5 py-2 mr-2 focus:outline-none cursor-pointer"
+          className="rounded-lg bg-primary-100 text-lg max-sm:px-10 sm:px-5 py-2 mr-2 focus:outline-none cursor-pointer"
           onChange={handleCurrency}
           >
             <option value="usd">USD</option>
