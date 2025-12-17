@@ -12,7 +12,8 @@ export const marketCapConversion = (value) => {
       }
       if(value >= oneMillion){
         return (`${(value / oneMillion).toFixed(2)} M`);
-      }
-       
+      }  
+        if(value < oneMillion){
         return (`${Math.round(value)} K`);
+       }
     }
