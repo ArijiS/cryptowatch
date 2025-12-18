@@ -118,21 +118,21 @@ const Home = () => {
       
       <div className="flex flex-col items-center max-sm:gap-y-8 sm:gap-y-12">
         
-        <div className="relative flex justify-center gap-x-15 mb-0 md:mb-10 bg-primary-100/25 px-8 py-3 rounded-xl font-light text-primary-75 inset-shadow-accent-50/20 inset-shadow-xs">
+        <div className="relative flex justify-center gap-x-15 mb-0 md:mb-10 bg-primary-100/25 px-8 py-3 rounded-xl max-sm:text-sm font-light text-primary-75 inset-shadow-accent-50/20 inset-shadow-xs">
           <div className="absolute -top-0.5 h-2 w-25 rounded-full blur-sm bg-accent-50/40 mix-blend-plus-lighter"/>
           <p>Buy</p>
           <p>Sell</p>
           <p>Trade</p>
         </div>
 
-        <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl/normal text-center font-semibold tracking-tight">Simplify Your Cryptocurrency Journey</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl/normal text-center font-semibold tracking-tight">Simplify Your Cryptocurrency Journey</h1>
 
         <p className="max-md:hidden text-center text-lg/9 font-light max-w-150 text-primary-75">Cryptocurrency can feel overwhelming, but it doesn't have to be.<br/>Track prices, explore coins, with our easy-to-use dashboard.</p>
 
         <form className="flex items-center justify-between border-2 border-primary-50 rounded-full px-2 py-1">
 
-          <input type="search" placeholder="Search crypto..." className="placeholder:font-light placeholder:text-base placeholder:text-primary-75/35 px-12 py-4
-           rounded-full outline-none" required onChange={handleInput} value={input} list="coinList"/>
+          <input type="search" placeholder="Search crypto..." className="placeholder:font-light placeholder:text-base placeholder:text-primary-75/35 sm:px-12 max-sm:px-8 sm:py-4
+           max-sm:py-3 rounded-full outline-none" required onChange={handleInput} value={input} list="coinList"/>
           <datalist id="coinList">
             {allCoins.map(
               (item, i)=>(
@@ -147,9 +147,9 @@ const Home = () => {
 
       <div className="">
         {loading ? <Loader />
-        : (<div className="max-w-4xl mx-auto my-16">
+        : (<div className="max-w-4xl mx-auto max-sm:my-10 sm:my-16">
 
-        <div className="max-sm:hidden bg-primary-100 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] max-md:grid-cols-[1.5fr_1fr_0.8fr_0.8fr] max-sm:px-3 max-sm:py-3 max-md:px-6 md:px-10 max-md:py-3 md:py-5 rounded-tl-2xl rounded-tr-2xl max-md:text-base md:text-lg max-md:gap-x-1 font-medium tracking-tight">
+        <div className="max-sm:hidden bg-primary-100 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] max-md:grid-cols-[1.5fr_1fr_0.8fr_0.8fr] max-sm:px-3 max-sm:py-3 max-md:px-6 md:px-10 max-md:py-5 md:py-5 rounded-tl-2xl rounded-tr-2xl max-md:text-base md:text-lg max-md:gap-x-1 font-medium tracking-tight">
           <p className="text-left max-md:hidden">#</p>
           <p>Coins</p>
           <p>Price</p>
@@ -161,7 +161,7 @@ const Home = () => {
           {displayCoins.slice(0, 10).map(
             (item, i)=>(
               <Link to={`/coin/${item.id}`} key={i}
-              className="group relative mt-4 bg-primary-100/40 hover:bg-primary-100/70 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] max-sm:grid-cols-2 max-sm:gap-y-2 max-md:grid-cols-[1.5fr_1fr_0.8fr_0.8fr] items-center max-sm:px-3 max-sm:py-8 max-md:px-6 md:px-10 max-md:py-3 md:py-4 text-base max-md:font-light md:font-normal last:rounded-br-2xl last:rounded-bl-2xl cursor-pointer">
+              className="group relative mt-4 bg-primary-100/40 hover:bg-primary-100/70 grid grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] max-sm:grid-cols-2 max-sm:gap-y-3  max-sm:gap-x-2 max-md:grid-cols-[1.5fr_1fr_0.8fr_0.8fr] items-center max-sm:px-3 max-sm:py-8 max-md:px-6 md:px-10 max-md:py-3 md:py-4 text-base max-md:font-light md:font-normal max-sm:first:rounded-t-2xl last:rounded-b-2xl cursor-pointer">
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-accent-50 to-transparent opacity-15 group-hover:opacity-30"/>
                 <p className="max-md:hidden">{item.market_cap_rank}</p>
                 <div className="flex items-center max-sm:font-medium">
