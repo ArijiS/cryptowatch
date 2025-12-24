@@ -82,7 +82,7 @@ const Coin = () => {
               </a>
             </div>
 
-            <div className= "bg-primary-100/40 w-full p-6 rounded-2xl"> {/* chart component*/}
+            <div className= "bg-primary-100/40 w-full p-2 rounded-2xl"> {/* chart component*/}
               < LightWeightChart historicalData = {historicalData} />
             </div>
 
@@ -145,7 +145,7 @@ const Coin = () => {
                   coinData.links.subreddit_url ? (
                     <a href={coinData.links.subreddit_url} target="_blank" className="cursor-pointer bg-primary-100/40 hover:bg-primary-100/80 w-full relative" rel="noopener noreferrer">
                       <BiLinkExternal className="size-4 lg:size-6 stroke-accent-50 absolute top-2 right-2" strokeWidth= {0.5}/>
-                      <FaReddit className="size-6 sm:size-10"/>
+                      <FaReddit className="size-8 sm:size-10"/>
                     </a>
                   ) : (
                     <div className="cursor-not-allowed bg-primary-100/40 text-primary-50/40 w-1/2">
@@ -159,7 +159,7 @@ const Coin = () => {
                     <a href={coinData.links.repos_url.github[0]} target="_blank" rel="noopener noreferrer"
                 className={`${coinData.links.repos_url.github.length > 0 ? "cursor-pointer" : "cursor-not-allowed"} bg-primary-100/40 hover:bg-primary-100/80 w-full relative`}>
                       <BiLinkExternal className="size-4 lg:size-6 stroke-accent-50 absolute top-2 right-2" strokeWidth= {0.5}/>
-                      <FaGithub className="size-6 sm:size-10"/> 
+                      <FaGithub className="size-8 sm:size-10"/> 
                     </a> 
                   ) :
                   
