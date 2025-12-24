@@ -10,6 +10,7 @@ const Home = () => {
   const {allCoins, currency, setAllCoins, loading, setLoading} = useCoinContext();
   const [displayCoins, setDisplayCoins] = useState([]);
   const [input, setInput] = useState("");
+  const [hasLocalMatch, setHasLocalMatch] = useState(false);
   //const [loading, setLoading] = useState(false);
 
 
@@ -78,6 +79,10 @@ const Home = () => {
       );
       if(filteredCoins.length > 0){
         setDisplayCoins(filteredCoins);
+        setHasLocalMatch(true);
+        return;
+      } else{
+        setHasLocalMatch(false);
       }
     },
     [input, allCoins]
@@ -86,8 +91,12 @@ const Home = () => {
   useEffect(
     ()=>{
       
-      if(input.length < 3){
+      if(input.length < 4){
         return
+      }
+
+      if(hasLocalMatch){
+        return;
       }
 
       const timeoutId = setTimeout(
@@ -97,7 +106,7 @@ const Home = () => {
       return ()=> clearTimeout(timeoutId);
 
       },
-    [input, currency]
+    [input, currency, hasLocalMatch]
   );
 
     
