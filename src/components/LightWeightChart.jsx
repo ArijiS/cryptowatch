@@ -72,7 +72,7 @@ const LightWeightChart = ({historicalData}) => {
 
             tooltip.style.display = "block";
             tooltip.textContent = price.toFixed(2);
-            tooltip.style.left = param.point.x + 20 + 'px';
+            tooltip.style.left = param.point.x + 30 + 'px';
             tooltip.style.top = param.point.y - 50 + 'px';
           }
         );
