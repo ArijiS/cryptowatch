@@ -32,6 +32,9 @@ const LineChart = ( {historicalData} ) => {
     [historicalData]
   );
 
+  const minDate = new Date(historicalData.prices[0][0]);
+  const maxDate = new Date(historicalData.prices[historicalData.prices.length - 1][0]);
+
   const options = {
     backgroundColor : "transparent",    
     chartArea: {
@@ -57,6 +60,10 @@ const LineChart = ( {historicalData} ) => {
     hAxis: {
       ticks,
       format: "MMM d",
+      viewWindow: {
+        min: minDate,
+        max: maxDate,
+      },
       textStyle: {
         color: "#f9f9fa",
         fontSize: 12,

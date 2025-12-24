@@ -21,8 +21,8 @@ const CoinContext = createContext();
     useEffect(
         ()=> {
             const fetchAllCoins = async () => {
-        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&price_change_percentage=24h`;
-        const options = {method: 'GET', headers: {'x-cg-demo-api-key': "CG-N9UaqezFGhXAL2H1ZK37nSTP"}};
+            const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&price_change_percentage=24h`;
+            const options = {method: 'GET', headers: {'x-cg-demo-api-key': "CG-N9UaqezFGhXAL2H1ZK37nSTP"}};
 
         setLoading(true);
 

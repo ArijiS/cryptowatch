@@ -15,81 +15,90 @@ const Home = () => {
 
   //----------------------------------------
 
-  const handleInput = async (e) => {
+              const handleInput = (e) => {
+                const value = e.target.value.toLowerCase();
+                setInput(value);    
+              }
 
-    const value = e.target.value.toLowerCase();
-    setInput(value);
+              const fetchOnSearch = async() => {
+              setLoading(true);
+              try{
+              const url = `https://api.coingecko.com/api/v3/search?query=${input}`;
+              const options = {method: 'GET', headers: {'x-cg-demo-api-key': "CG-N9UaqezFGhXAL2H1ZK37nSTP"}};    
 
-      if (value === ""){
-      setDisplayCoins(allCoins);
-      return;
-    }
+              const searchRes = await fetch(url, options);
 
-    const filteredCoins = allCoins.filter(
-      (item) => item.id.toLowerCase().startsWith(value) || item.symbol.toLowerCase().startsWith(value)
-    );
+              if(!searchRes.ok){
+                throw new Error(`API Error: ${searchRes.status}`);
+              }
 
-    if(filteredCoins.length > 0){
-      setDisplayCoins(filteredCoins);
-      return;
-    }
+              const searchData = await searchRes.json();
 
-    if(value.length < 3){
-      return;
-    }
+              if(searchData.coins.length === 0){
+                return;
+              }
 
-    setLoading(true);
+              const coinIds = (searchData.coins.map(coin => coin.id).join(","));
 
-    try{
-        const url = `https://api.coingecko.com/api/v3/search?query=${value}`;
-        const options = {method: 'GET', headers: {'x-cg-demo-api-key': "CG-N9UaqezFGhXAL2H1ZK37nSTP"}};    
+              const detailUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&ids=${coinIds}&price_change_percentage=24h`;
 
-        const searchRes = await fetch(url, options);
+              const detailRes = await fetch(detailUrl, options);
+              if(!detailRes.ok){
+                throw new Error ("Details fetch error");
+              }
 
-        if(!searchRes.ok){
-          throw new Error(`API Error: ${searchRes.status}`);
+              const detailData = await detailRes.json();   
+              if(detailData.length === 0){
+                return;
+              }
+
+              setDisplayCoins(detailData); 
+          }
+
+          catch(err){
+            console.error("Search error", err);
+          }
+
+          finally {
+            setLoading(false);
+          }
+          
         }
-
-        const searchData = await searchRes.json();
-
-        if(searchData.coins.length === 0){
-          return;
-        }
-
-        const coinIds = (searchData.coins.map(coin => coin.id).join(","));
-
-        const detailUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&ids=${coinIds}&price_change_percentage=24h`;
-
-        const detailRes = await fetch(detailUrl, options);
-        if(!detailRes.ok){
-          throw new Error ("Details fetch error");
-        }
-
-        const detailData = await detailRes.json();   
-        if(detailData.length === 0){
-          return;
-        }
-
-        setDisplayCoins(detailData); 
-        console.log(detailData);
-    }
-
-    catch(err){
-      console.error("Search error", err);
-    }
-
-    finally {
-      setLoading(false);
-    }
-    
-  }
 
   //------------------------------------------------
            
+  useEffect(
+    ()=>{
+      if(input === ""){
+        setDisplayCoins(allCoins);
+        return;
+      }
+      const filteredCoins = allCoins.filter(
+        (item)=> item.id.toLowerCase().startsWith(input) || item.symbol.toLowerCase().startsWith(input)
+      );
+      if(filteredCoins.length > 0){
+        setDisplayCoins(filteredCoins);
+      }
+    },
+    [input, allCoins]
+  );
 
   useEffect(
-    () => setDisplayCoins(allCoins)
-    , [allCoins]);
+    ()=>{
+      
+      if(input.length < 3){
+        return
+      }
+
+      const timeoutId = setTimeout(
+        ()=> {fetchOnSearch();}, 500
+      );
+
+      return ()=> clearTimeout(timeoutId);
+
+      },
+    [input, currency]
+  );
 
     
     const marketCapConversion = (value) => {
@@ -167,12 +176,12 @@ const Home = () => {
                 <div className="flex items-center max-sm:font-medium">
                   <img src={item.image} alt={`${item.name}-image`} className="max-sm:size-6 sm:size-9 max-sm:mr-2 sm:mr-3"/>
                   <p>{`${item.name}`}<span className="max-sm:hidden sm:inline-block">{`-${item.symbol}`}</span></p></div>
-                <p>{`${currency.symbol} ${item.current_price}`}</p>
+                <p className="max-sm:text-right">{`${currency.symbol} ${item.current_price}`}</p>
                 <p className={`text-center max-sm:text-left ${item.price_change_percentage_24h < 0 ? "text-red-400" : "text-green-400"}`}>
                   { item.price_change_percentage_24h !== null ? item.price_change_percentage_24h.toFixed(2) : "-"}%
                   <span className="sm:hidden text-sm text-primary-50 font-light"> (24h Change)</span>
                   </p>
-                <p className="text-right max-sm:text-left">{`${currency.symbol} ${marketCapConversion(item.market_cap)}`} <span className="sm:hidden text-sm font-light">(M cap)</span></p>                
+                <p className="text-right">{`${currency.symbol} ${marketCapConversion(item.market_cap)}`} <span className="sm:hidden text-sm font-light">(M cap)</span></p>                
               </Link>
             )
           )
